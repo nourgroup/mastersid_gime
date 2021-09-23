@@ -1,26 +1,28 @@
 package fr.mastersid.oummadi.stackoverflow
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.mastersid.oummadi.stackoverflow.data.Question
 import fr.mastersid.oummadi.stackoverflow.repository.DataRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class QuestionsViewModel @Inject constructor() : ViewModel() {
-    var mDataRepository = DataRepository()
-    var questionList = MutableLiveData<List<Question>>()
-    //var dataRepository = mDataRepository
+class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepository) : ViewModel() {
+
+    private val _questionList = MutableLiveData<List<Question>>(emptyList())
+
+    val questionList : LiveData<List<Question>>
+        get() = _questionList
+
     init {
         updateQuestionList()
     }
 
-    fun updateQuestionList() : MutableLiveData<List<Question>>?{
-
-        questionList?.postValue(mDataRepository.getQuestion())
-
-        return questionList
+    private fun updateQuestionList(){
+        viewModelScope.launch(Dispatchers.IO){
+            _questionList.postValue(mDataRepository.getQuestion())
+        }
     }
 }
