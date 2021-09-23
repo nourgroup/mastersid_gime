@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuestionsViewModel @Inject constructor() : ViewModel() {
-    private lateinit var mDataRepository : DataRepository
+    var mDataRepository = DataRepository()
     var questionList = MutableLiveData<List<Question>>()
     //var dataRepository = mDataRepository
     init {
