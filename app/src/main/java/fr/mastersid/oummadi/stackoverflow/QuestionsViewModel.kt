@@ -9,15 +9,18 @@ import fr.mastersid.oummadi.stackoverflow.repository.DataRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class QuestionsViewModel @Inject constructor(mDataRepository : DataRepository) : ViewModel() {
+class QuestionsViewModel @Inject constructor() : ViewModel() {
+    private lateinit var mDataRepository : DataRepository
     var questionList = MutableLiveData<List<Question>>()
-    var dataRepository = mDataRepository
+    //var dataRepository = mDataRepository
     init {
         updateQuestionList()
     }
 
     fun updateQuestionList() : MutableLiveData<List<Question>>?{
-        questionList?.postValue(dataRepository.getQuestion())
+
+        questionList?.postValue(mDataRepository.getQuestion())
+
         return questionList
     }
 }

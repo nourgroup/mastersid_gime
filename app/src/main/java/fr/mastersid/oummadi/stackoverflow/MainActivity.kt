@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         var recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         //var mySwipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.mySwipeRefreshLayout)
-        var mDataRepository = DataRepository()
-        var model = QuestionsViewModel(mDataRepository)
+
+        var model = QuestionsViewModel()
         //var model = ViewModelProvider(this).get(QuestionsViewModel::class.java)
         /*mySwipeRefreshLayout.setOnRefreshListener {
             // mettre le code pour la liste par defaut
