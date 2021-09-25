@@ -5,10 +5,13 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+
+    <fragment
+        android:id="@+id/fragmentDice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:name="fr.mastersid.oummadi.stackoverflow.MainFragment"
+        tools:layout="@layout/fragment_main"/>
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

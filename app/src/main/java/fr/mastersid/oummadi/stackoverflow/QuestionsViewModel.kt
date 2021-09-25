@@ -1,9 +1,10 @@
 package fr.mastersid.oummadi.stackoverflow
 
+import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.mastersid.oummadi.stackoverflow.data.Question
-import fr.mastersid.oummadi.stackoverflow.repository.DataRepository
+import fr.mastersid.oummadi.stackoverflow.data.repository.DataRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +23,9 @@ class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepositor
 
     private fun updateQuestionList(){
         viewModelScope.launch(Dispatchers.IO){
-            _questionList.postValue(mDataRepository.getQuestion())
+            //_questionList.postValue(mDataRepository.getQuestionWebService())
+            //var a : Call<List<QuestionX>> = mDataRepository.getQuestionWebService()
+            mDataRepository.getQuestionWebService()
         }
     }
 }

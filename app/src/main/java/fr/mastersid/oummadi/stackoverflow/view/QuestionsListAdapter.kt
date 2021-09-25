@@ -2,11 +2,12 @@ package fr.mastersid.oummadi.stackoverflow.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.mastersid.oummadi.stackoverflow.R
 import fr.mastersid.oummadi.stackoverflow.data.Question
-
-class QuestionsListAdapter(val item : List<Question>) : RecyclerView.Adapter <QuestionItemViewHolder>() {
+//ListAdapter < Weather ,WeatherItemViewHolder >( Weather . DiffCallback () )
+class QuestionsListAdapter(val item : List<Question>) : ListAdapter<Question,QuestionItemViewHolder>(Question.DiffCallback()) {
 
     override fun onCreateViewHolder (parent : ViewGroup , viewType : Int ): QuestionItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.itemlayout , parent , false )
@@ -16,7 +17,7 @@ class QuestionsListAdapter(val item : List<Question>) : RecyclerView.Adapter <Qu
     override fun onBindViewHolder(holder: QuestionItemViewHolder, position: Int) {
         //val aa = getItemId(position)
         holder.titre.text = item[position].titre
-        holder.answerCount.text = "${item[position].answerCount}"
+        holder.answerCount.text = "${item[position].answer_count}"
     }
 
     override fun getItemCount(): Int {

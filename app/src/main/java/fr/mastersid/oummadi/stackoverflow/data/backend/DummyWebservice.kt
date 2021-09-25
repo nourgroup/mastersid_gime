@@ -1,9 +1,9 @@
-package fr.mastersid.oummadi.stackoverflow.backend
+package fr.mastersid.oummadi.stackoverflow.data.backend
 
 import fr.mastersid.oummadi.stackoverflow.data.Question
 import javax.inject.Inject
 
-class ApiService @Inject constructor() {
+class DummyWebservice @Inject constructor() {
 
     suspend fun getQuestion() : List<Question>{
         return listOf(
