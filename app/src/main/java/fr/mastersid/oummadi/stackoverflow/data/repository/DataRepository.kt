@@ -9,10 +9,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-//val api : WebServiceApiStackOverfow
-class DataRepository @Inject constructor() {
 
-    lateinit var mWebServiceApiStackOverfow : WebServiceApiStackOverfow
+class DataRepository @Inject constructor(val mWebServiceApiStackOverfow:WebServiceApiStackOverfow) {
 
     suspend fun getQuestionWebService() : QuestionX{
 

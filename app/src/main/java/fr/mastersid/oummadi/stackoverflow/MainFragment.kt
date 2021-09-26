@@ -10,14 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import fr.mastersid.oummadi.stackoverflow.ViewModel.QuestionsViewModel
+import fr.mastersid.oummadi.stackoverflow.data.backend.WebServiceApiStackOverfow
 import fr.mastersid.oummadi.stackoverflow.data.repository.DataRepository
 import fr.mastersid.oummadi.stackoverflow.view.QuestionsListAdapter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
     var questionAdapter: QuestionsListAdapter? = null
 
-    //lateinit var mWebServiceApiStackOverfow: WebServiceApiStackOverfow
+    @Inject
+    lateinit var mWebServiceApiStackOverfow: WebServiceApiStackOverfow
 
     lateinit var mDataRepository : DataRepository
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +29,7 @@ class MainFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_main, container, false)
         var recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         //var mySwipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.mySwipeRefreshLayout)
-        mDataRepository = DataRepository()
+        mDataRepository = DataRepository(mWebServiceApiStackOverfow)
         var model = QuestionsViewModel(mDataRepository)
         /*mySwipeRefreshLayout.setOnRefreshListener {
             // mettre le code pour la liste par defaut

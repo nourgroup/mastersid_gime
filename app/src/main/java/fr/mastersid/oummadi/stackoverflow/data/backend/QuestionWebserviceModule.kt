@@ -27,7 +27,6 @@ object QuestionWebserviceModule {
     }
 
     @Provides
-    @Singleton
     fun provideRetrofit(moshi:Moshi) : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
