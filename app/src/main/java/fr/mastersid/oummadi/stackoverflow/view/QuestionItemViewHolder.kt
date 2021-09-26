@@ -7,6 +7,6 @@ import fr.mastersid.oummadi.stackoverflow.R
 import org.w3c.dom.Text
 
 class QuestionItemViewHolder(view : View)  : RecyclerView.ViewHolder ( view ){
-    val titre = view.findViewById<TextView>(R.id.title)
-    val answerCount = view.findViewById<TextView>(R.id.answerCount)
+    val titre : TextView= view.findViewById(R.id.title)
+    val answerCount : TextView= view.findViewById(R.id.answerCount)
 }

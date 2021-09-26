@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import fr.mastersid.oummadi.stackoverflow.ViewModel.QuestionsViewModel
 import fr.mastersid.oummadi.stackoverflow.data.repository.DataRepository
 import fr.mastersid.oummadi.stackoverflow.view.QuestionsListAdapter
 
@@ -25,24 +26,18 @@ class MainFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_main, container, false)
         var recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         //var mySwipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.mySwipeRefreshLayout)
-
         mDataRepository = DataRepository()
         var model = QuestionsViewModel(mDataRepository)
-
         /*mySwipeRefreshLayout.setOnRefreshListener {
             // mettre le code pour la liste par defaut
         }*/
-
         model.questionList.observe(viewLifecycleOwner , Observer {
-            questionAdapter = QuestionsListAdapter(it)
             recyclerView.apply {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
-                adapter = questionAdapter
+                adapter = QuestionsListAdapter(it)
             }
         })
         return view
     }
-
-
 }

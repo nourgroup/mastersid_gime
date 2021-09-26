@@ -14,28 +14,31 @@ import javax.inject.Singleton
 
 private const val BASE_URL = "https://api.stackexchange.com/2.3/"
 
-//@Module
-//@InstallIn(SingletonComponent::class)
+@Module
+@InstallIn(SingletonComponent::class)
 object QuestionWebserviceModule {
 
-    //@Provides
-    //@Singleton
-    fun provideRetrofit(moshi : Moshi) : Retrofit {
+    @Provides
+    @Singleton
+    fun provideMoshi():Moshi {
+        return Moshi.Builder ()
+                .add(KotlinJsonAdapterFactory() )
+                .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(moshi:Moshi) : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl(BASE_URL).build()
     }
 
-    //@Provides
+    @Provides
     fun provideQuestionWebservice(retrofit:Retrofit): WebServiceApiStackOverfow {
         return retrofit.create(WebServiceApiStackOverfow::class.java)
     }
 
-    //@Provides
-    fun provideMoshi(): Moshi {
-        return Moshi . Builder ()
-                . add (KotlinJsonAdapterFactory() )
-                . build ()
-    }
+
 
 }
