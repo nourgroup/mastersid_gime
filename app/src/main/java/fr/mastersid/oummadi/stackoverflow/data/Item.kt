@@ -1,8 +1,10 @@
 package fr.mastersid.oummadi.stackoverflow.data
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Entity
 import javax.inject.Inject
 
+@Entity(tableName = "question_table", primaryKeys = ["title"])
 data class Item @Inject constructor(
     val answer_count: Int,
     val title: String,

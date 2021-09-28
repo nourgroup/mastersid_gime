@@ -22,7 +22,7 @@ object QuestionWebserviceModule {
     @Singleton
     fun provideMoshi():Moshi {
         return Moshi.Builder ()
-                .add(KotlinJsonAdapterFactory() )
+                .add(KotlinJsonAdapterFactory())
                 .build()
     }
 
@@ -37,7 +37,5 @@ object QuestionWebserviceModule {
     fun provideQuestionWebservice(retrofit:Retrofit): WebServiceApiStackOverfow {
         return retrofit.create(WebServiceApiStackOverfow::class.java)
     }
-
-
 
 }
