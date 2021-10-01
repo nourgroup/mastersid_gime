@@ -17,7 +17,7 @@ class DataRepository @Inject constructor(
     private val mStackDoa: StackDao
     ) {
 
-    val questionList = mStackDoa.getQuestionsList()
+    var questionList = mStackDoa.getQuestionsList()
 
     suspend fun loadInDBMYSQLQuestionWebService() {
 
@@ -31,6 +31,7 @@ class DataRepository @Inject constructor(
                     override fun onFailure ( call : Call <String >, t: Throwable ) {
                         Log.d(" Webservice ", " Error : ${t.message }") } }
         )*/
-        mStackDoa.insertAll(mWebServiceApiStackOverfow.getQuestionList().items)
+        mStackDoa.insertAll(mWebServiceApiStackOverfow.getQuestionList())
+
     }
 }

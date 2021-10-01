@@ -10,8 +10,7 @@ import fr.mastersid.oummadi.stackoverflow.data.Item
 import fr.mastersid.oummadi.stackoverflow.data.Question
 import fr.mastersid.oummadi.stackoverflow.data.QuestionX
 
-//ListAdapter < Weather ,WeatherItemViewHolder >( Weather . DiffCallback () )
-class QuestionsListAdapter(private val item : QuestionX) : ListAdapter<Item,QuestionItemViewHolder>(Item.DiffCallback()) {
+class QuestionsListAdapter : ListAdapter<Question,QuestionItemViewHolder>(Question.DiffCallback()) {
 
     override fun onCreateViewHolder (parent : ViewGroup , viewType : Int ): QuestionItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.itemlayout , parent , false )
@@ -19,13 +18,10 @@ class QuestionsListAdapter(private val item : QuestionX) : ListAdapter<Item,Ques
     }
 
     override fun onBindViewHolder(holder: QuestionItemViewHolder, position: Int) {
-        //val aa = getItemId(position)
-        holder.titre.text = item.items[position].title
-        Log.i("onBindViewHolder",item.items[position].title + ", count : ${item.items[position].answer_count}")
-        holder.answerCount.text = "${item.items[position].answer_count}"
-    }
-
-    override fun getItemCount(): Int {
-        return item.items.size
+        // Récupérer l'objet indexé par position
+        val items = getItem(position)
+        holder.titre.text           = items.title
+        //Log.i("onBindViewHolder",items.items[position].title + ", count : ${items.items[position].answer_count}")
+        holder.answerCount.text     = "${items.answer_count}"
     }
 }

@@ -14,23 +14,20 @@ import javax.inject.Inject
 @HiltViewModel
 class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepository) : ViewModel() {
 
-    val questionList = mDataRepository.questionList
+    var questionList = mDataRepository.questionList
 
     //val questionList : LiveData<QuestionX>
     //    get() = _questionList
 
-
     init {
-        updateQuestionList()
+        //updateQuestionList()
     }
 
-    private fun updateQuestionList(){
+    fun updateQuestionList(){
         viewModelScope.launch(Dispatchers.IO){
             //Log.i("LIST", mDataRepository.getQuestionWebService().toString())
-            //_questionList.postValue(mDataRepository.getQuestionWebService())
-            //_questionList.postValue(mDataRepository.questionList)
+            //Appeler la fonction qui charge les données à partir de l'API
             mDataRepository.loadInDBMYSQLQuestionWebService()
-
         }
     }
 }

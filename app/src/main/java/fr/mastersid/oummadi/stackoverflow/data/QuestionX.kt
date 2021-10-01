@@ -8,6 +8,4 @@ data class QuestionX @Inject constructor(
     val items: List<Item>,
     val quota_max: Int,
     val quota_remaining: Int
-){
-
-}
+)
