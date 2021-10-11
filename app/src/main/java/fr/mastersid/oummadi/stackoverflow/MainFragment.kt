@@ -39,7 +39,6 @@ class MainFragment : Fragment() {
         //val model : QuestionsViewModel by viewModels()
 
         recyclerView.apply {
-
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = questionAdapter

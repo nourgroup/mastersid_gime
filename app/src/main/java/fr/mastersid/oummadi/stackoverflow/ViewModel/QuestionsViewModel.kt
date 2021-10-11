@@ -19,20 +19,21 @@ class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepositor
 
     var questionList = mDataRepository.questionList
 
-    var vm_view = MutableLiveData(RequestState.PENDING)
+    //var vm_view = MutableLiveData(RequestState.PENDING)
 
-    //val questionList : LiveData<QuestionX>
-    //    get() = _questionList
+    var vm_view = mDataRepository.repo_vm.asLiveData()
 
-    init {
+    /*init {
         updateQuestionList()
         viewModelScope.launch(Dispatchers.IO){
             mDataRepository.repo_vm.collect{
                 vm_view.postValue(it)
             }
         }
-    }
-
+    }*/
+    /*
+        invoke function
+     */
     fun updateQuestionList(){
         viewModelScope.launch(Dispatchers.IO){
             //vm_view.postValue(RequestState.PENDING)
