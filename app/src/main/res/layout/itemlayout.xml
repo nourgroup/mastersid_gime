@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     >
     <TextView
         android:layout_width="0dp"
@@ -20,5 +21,12 @@
         android:id="@+id/answerCount"
         android:padding="10dp"
         ></TextView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendSMS"
+        android:background="@drawable/ic_baseline_send_24"
+        android:padding="10dp"
+        />
 
 </LinearLayout>

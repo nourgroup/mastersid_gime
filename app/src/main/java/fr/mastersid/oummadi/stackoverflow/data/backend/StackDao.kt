@@ -14,6 +14,7 @@ import fr.mastersid.oummadi.stackoverflow.data.Question
 import fr.mastersid.oummadi.stackoverflow.data.QuestionX
 import javax.inject.Singleton
 
+
 @Dao
 interface StackDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

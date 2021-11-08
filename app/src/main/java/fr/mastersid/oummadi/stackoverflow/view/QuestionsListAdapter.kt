@@ -1,5 +1,7 @@
 package fr.mastersid.oummadi.stackoverflow.view
 
+import android.app.Activity
+import android.telephony.SmsManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +11,9 @@ import fr.mastersid.oummadi.stackoverflow.R
 import fr.mastersid.oummadi.stackoverflow.data.Item
 import fr.mastersid.oummadi.stackoverflow.data.Question
 import fr.mastersid.oummadi.stackoverflow.data.QuestionX
+import java.lang.Exception
 
-class QuestionsListAdapter : ListAdapter<Question,QuestionItemViewHolder>(Question.DiffCallback()) {
+class QuestionsListAdapter(val itemClicklistener : (item : Question) -> Unit ) : ListAdapter<Question,QuestionItemViewHolder>(Question.DiffCallback()) {
 
     override fun onCreateViewHolder (parent : ViewGroup , viewType : Int ): QuestionItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.itemlayout , parent , false )
@@ -23,5 +26,9 @@ class QuestionsListAdapter : ListAdapter<Question,QuestionItemViewHolder>(Questi
         holder.titre.text           = items.title
         //Log.i("onBindViewHolder",items.items[position].title + ", count : ${items.items[position].answer_count}")
         holder.answerCount.text     = "${items.answer_count}"
+
+        holder.sendSMS.setOnClickListener {
+            itemClicklistener(items)
+        }
     }
 }

@@ -1,5 +1,6 @@
 package fr.mastersid.oummadi.stackoverflow.ViewModel
 
+import android.telephony.SmsManager
 import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,28 +21,35 @@ class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepositor
 
     var questionList = mDataRepository.questionList
 
-    //var vm_view = MutableLiveData(RequestState.PENDING)
-
+    // On a remplacé le type de MutableLiveData (1) en une seule ligne
+    // qui fait l'observation (l'écoute de changement) de la valeur vm_view
+    //(1) var vm_view = MutableLiveData(RequestState.PENDING)
     var vm_view = mDataRepository.repo_vm.asLiveData()
 
-    /*init {
-        updateQuestionList()
-        viewModelScope.launch(Dispatchers.IO){
-            mDataRepository.repo_vm.collect{
-                vm_view.postValue(it)
+    init {
+        //updateQuestionList()
+
+        /*(2)   viewModelScope.launch(Dispatchers.IO){
+                mDataRepository.repo_vm.collect{
+                    vm_view.postValue(it)
+                }
             }
+        */
         }
-    }*/
     /*
         invoke function
-     */
+    */
     fun updateQuestionList(){
         viewModelScope.launch(Dispatchers.IO){
             //vm_view.postValue(RequestState.PENDING)
             //Log.i("LIST", mDataRepository.getQuestionWebService().toString())
             //Appeler la fonction qui charge les données à partir de l'API
-            mDataRepository.loadInDBMYSQLQuestionWebService()
+            Log.i("LOADING","Before InsertInNoSqlAndGetQuestionWebService")
+            mDataRepository.insertInNoSqlAndGetQuestionWebService()
+            Log.i("LOADING","After InsertInNoSqlAndGetQuestionWebService")
             //vm_view.postValue(RequestState.NONE_OR_DONE)
         }
     }
+
+
 }

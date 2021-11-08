@@ -20,11 +20,23 @@ class DataRepository @Inject constructor(
     ) {
 
     var repo_vm = MutableStateFlow(RequestState.NONE_OR_DONE)
+    // base de données
     var questionList = mStackDoa.getQuestionsList()
 
-    suspend fun loadInDBMYSQLQuestionWebService() {
-        repo_vm.emit(RequestState.PENDING)
-        mStackDoa.insertAll(mWebServiceApiStackOverfow.getQuestionList())
-        repo_vm.emit(RequestState.NONE_OR_DONE)
+    suspend fun insertInNoSqlAndGetQuestionWebService() {
+
+        try{
+            repo_vm.emit(RequestState.PENDING)
+            Log.d("LOADING",RequestState.PENDING.toString())
+            mStackDoa.getQuestionsList()
+            Log.d("LOADING","APPEL PI")
+            mStackDoa.insertAll(mWebServiceApiStackOverfow.getQuestionList())
+            Log.d("LOADING","INSERT IN DB")
+        }finally {
+            repo_vm.emit(RequestState.NONE_OR_DONE)
+            Log.d("LOADING",RequestState.NONE_OR_DONE.toString())
+        }
+
+
     }
 }
