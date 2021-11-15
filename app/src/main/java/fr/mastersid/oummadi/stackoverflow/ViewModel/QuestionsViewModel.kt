@@ -1,8 +1,10 @@
 package fr.mastersid.oummadi.stackoverflow.ViewModel
 
+import android.app.Application
 import android.telephony.SmsManager
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.work.WorkManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.mastersid.oummadi.stackoverflow.data.Item
 import fr.mastersid.oummadi.stackoverflow.data.Question
@@ -17,7 +19,10 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepository) : ViewModel() {
+class QuestionsViewModel @Inject constructor(
+    var mDataRepository : DataRepository,
+    var application : Application
+    ) : ViewModel() {
 
     var questionList = mDataRepository.questionList
 
@@ -45,7 +50,13 @@ class QuestionsViewModel @Inject constructor(var mDataRepository : DataRepositor
             //Log.i("LIST", mDataRepository.getQuestionWebService().toString())
             //Appeler la fonction qui charge les données à partir de l'API
             Log.i("LOADING","Before InsertInNoSqlAndGetQuestionWebService")
-            mDataRepository.insertInNoSqlAndGetQuestionWebService()
+            // cette fonction est déplacer au worker qui va l'excuter
+            //mDataRepository.insertInNoSqlAndGetQuestionWebService()
+            /*
+                Solution avec les Workers:
+                passer au repo -> executer Worker ->
+            */
+            mDataRepository.updateWeatherList()
             Log.i("LOADING","After InsertInNoSqlAndGetQuestionWebService")
             //vm_view.postValue(RequestState.NONE_OR_DONE)
         }

@@ -51,8 +51,6 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
-
-
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
 
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
@@ -79,6 +77,21 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+
+    // implementation Worker
+    /*
+        def version_hilt_work = "1.0.0"
+        implementation "androidx.hilt:hilt-work:$version_hilt_work"
+        kapt "androidx.hilt:hilt-compiler:$version_hilt_work"
+        def work_version = "2.5.0"
+        implementation "androidx.work:work-runtime-ktx:$work_version"
+    */
+    //
+    def version_hilt_work = "1.0.0"
+    implementation "androidx.hilt:hilt-work:$version_hilt_work"
+    kapt "androidx.hilt:hilt-compiler:$version_hilt_work"
+    def work_version = "2.6.0"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

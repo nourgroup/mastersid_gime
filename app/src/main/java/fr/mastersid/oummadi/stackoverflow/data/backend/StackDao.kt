@@ -15,6 +15,10 @@ import fr.mastersid.oummadi.stackoverflow.data.QuestionX
 import javax.inject.Singleton
 
 
+/**
+ * Creation de sqlite
+ *
+ */
 @Dao
 interface StackDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -24,12 +28,20 @@ interface StackDao {
     fun getQuestionsList(): LiveData<List<Question>>
 }
 
+/**
+ * Creation de sqlite
+ *
+ */
 @Database(
     entities = [Question::class],
     version = 1,
     exportSchema = false
 )
 
+/**
+ * Creation de sqlite
+ *
+ */
 abstract class QuestionRoomDatabase: RoomDatabase(){
         abstract fun questionDao(): StackDao
 }
@@ -38,10 +50,19 @@ abstract class QuestionRoomDatabase: RoomDatabase(){
 @Module
 object QuestionRoomDatabaseModule{
 
+    /**
+     * Creation de sqlite
+     *
+     */
     @Provides
     fun provideQuestionDao(mQuestionRoomDataBase : QuestionRoomDatabase): StackDao{
         return mQuestionRoomDataBase.questionDao()
     }
+
+    /**
+     * Creation de sqlite
+     *
+     */
 
     @Provides
     @Singleton

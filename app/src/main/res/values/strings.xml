@@ -3,4 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="permission_is_granted" >You can now send SMS</string>
+    <string name="notification_channel_id" translatable="false">weather_notification_channel_id</string>
+    <string name="notification_channel_name">Weather updates notifications</string>
+    <string name="notification_channel_description">Notify when updates are done</string>
+    <string name="notification_cancel">notification cancel</string>
 </resources>

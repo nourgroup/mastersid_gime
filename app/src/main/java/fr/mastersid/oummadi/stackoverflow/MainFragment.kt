@@ -1,6 +1,7 @@
 package fr.mastersid.oummadi.stackoverflow
 
 import android.Manifest
+import android.app.NotificationManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -29,6 +30,8 @@ import fr.mastersid.oummadi.stackoverflow.view.QuestionsListAdapter
 import java.lang.Exception
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import fr.mastersid.oummadi.stackoverflow.Worker.createChannel
+import fr.mastersid.oummadi.stackoverflow.Worker.sendNotificationUpdateDone
 import fr.mastersid.oummadi.stackoverflow.data.Question
 
 import javax.inject.Inject
@@ -149,7 +152,7 @@ class MainFragment : Fragment() {
             model.updateQuestionList()
         }
 
-        model.questionList.observe(viewLifecycleOwner)  {
+        model.questionList.observe(viewLifecycleOwner){
             Log.i("LISTE","chargement de la liste a commencé !")
             questionAdapter.submitList(it)
             // cacher loading widget SwipeRefreshLayout
@@ -163,6 +166,15 @@ class MainFragment : Fragment() {
             }
             Log.d("LOADING","DONE activity")
         }
+        /*
+
+         */
+        val notificationManager = ContextCompat.getSystemService(
+            requireContext(),
+            NotificationManager::class.java
+        )
+        notificationManager?.createChannel(requireContext())
+        notificationManager?.sendNotificationUpdateDone(requireContext(),"data","data")
     }
 
     fun sendSMS(question : Question){
@@ -171,5 +183,6 @@ class MainFragment : Fragment() {
         Log.d("SMS","before sendText")
         smsManager.sendTextMessage("+33758922837",null,question.title,null,null)
         Log.d("SMS","send +33758922837")
+
     }
 }
